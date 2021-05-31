@@ -1,5 +1,6 @@
 import os
 import shutil
+import sys
 
 def getFiles(path):
     for file in os.listdir(path):
@@ -13,7 +14,17 @@ def getDirectories(path):
             result.append(file)
     return result
 
-def main():
+
+def fancy_names():
+    global f
+    f = True
+
+if len(sys.argv) > 1:
+    options = {"-f" : fancy_names()}
+    for option in sys.argv[1:]:
+        options[option]
+
+def main(fancy_names=False) -> None:
     DOWNLOAD_PATH = os.path.expanduser('~\Downloads')
     files = getFiles(DOWNLOAD_PATH)
     folders_created = getDirectories(DOWNLOAD_PATH)
@@ -34,6 +45,13 @@ def main():
                     shutil.move(f"{DOWNLOAD_PATH}\\{file}", f"{DOWNLOAD_PATH}\\{extension}")
                 except NameError as err:
                     print(f"Couldn't create a file to locate this file: {file}")
+
+        if f:
+            extensions_name = {".pptx" : "Powerpoint presentations"}
+            for folder in folders_created: 
+                if folder in extensions_name:
+                    os.rename(f"{DOWNLOAD_PATH}\\{folder}", f"{DOWNLOAD_PATH}\\{extensions_name[folder]}")
+
 
 
 if __name__ == "__main__":
