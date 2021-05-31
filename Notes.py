@@ -28,7 +28,7 @@ def directories(path):
             yield nfile
 
 DOWNLOAD_PATH = os.path.expanduser('~\Downloads')
-Dowload_folder = files(DOWNLOAD_PATH)
+Dowload_folder = list(files(DOWNLOAD_PATH))
 folders_created = list(directories(DOWNLOAD_PATH))
 
 if os.name  == "nt":
