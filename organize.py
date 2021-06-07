@@ -15,17 +15,38 @@ def getDirectories(path):
     return result
 
 
-def fancy_names():
-    global f
-    f = True
+def fancyNames(folders_created, extensions_name, path):
+    for folder in folders_created: 
+        if folder in extensions_name:
+            os.rename(f"{path}\\{folder}", f"{path}\\{extensions_name[folder]}")
 
-if len(sys.argv) > 1:
-    options = {"-f" : fancy_names()}
-    for option in sys.argv[1:]:
-        options[option]
 
-def main(fancy_names=False) -> None:
+def main() -> None:
+
+    EXTENSIONS_NAME = {
+        ".pptx" : "Powerpoint presentations",
+        ".jpg" : "JPG Photos",
+        ".png" : "PNG Photos", 
+        ".exe" : "Executables",
+        ".py"  : "Python Files",
+        ".pdf" : "PDFs",
+        ".xlsx" : "Excels Files",
+        ".cvs" : "Comma Separated Values",
+        ".docx" : "Word Documents",
+        ".gif" : "GIFs",
+        ".mp4" : "MP4 Videos",
+        ".zip" : "Compressed Folders",
+        ".sql" : "SQL Database Files",
+        ".rkt" : "Racket Files"
+        }
+
     DOWNLOAD_PATH = os.path.expanduser('~\Downloads')
+
+    if len(sys.argv) > 1:
+        OPTIONS = sys.argv[1::]
+    else:
+        OPTIONS = []
+
     files = getFiles(DOWNLOAD_PATH)
     folders_created = getDirectories(DOWNLOAD_PATH)
     
@@ -46,13 +67,13 @@ def main(fancy_names=False) -> None:
                 except NameError as err:
                     print(f"Couldn't create a file to locate this file: {file}")
 
-        if f:
-            extensions_name = {".pptx" : "Powerpoint presentations"}
-            for folder in folders_created: 
-                if folder in extensions_name:
-                    os.rename(f"{DOWNLOAD_PATH}\\{folder}", f"{DOWNLOAD_PATH}\\{extensions_name[folder]}")
+        if "-f" in OPTIONS:
+            fancyNames(folders_created, EXTENSIONS_NAME, DOWNLOAD_PATH)
+
+            
 
 
 
 if __name__ == "__main__":
-    main()
+    # main()
+    pass
