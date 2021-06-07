@@ -22,3 +22,21 @@ Once installed you can either dobble click it or run this command in any termina
 ```powershell
 python organize.py
 ```
+
+## Output
+
+Once you run it all your files will be ordered by extension name. I should look something like this.
+
+![Ordered download folder](Images/Ordered.JPG)
+
+If you want something more informative you could add a "-f" flag and get a more readable folder name.
+
+For this to work you need to run the program from the terminal.
+
+```powershell
+python organize.py -f
+```
+The output should look somethink like this.
+![pretty names](Images/pretty.JPG)
+
+
