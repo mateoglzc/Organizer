@@ -13,7 +13,7 @@ For now this only works on windows, and still may have some errors. If you ever 
 
 ## How do I use it?
 
-To use it just download the organize.py file and run it.
+To use it just download the [organize.py](organize.py) file and run it.
 
 To run it you'll need to have python installed. You can install it in the [official python website](https://www.python.org/).
 
